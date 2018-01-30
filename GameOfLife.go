@@ -239,14 +239,12 @@ func run() {
 	var (
 		camPos       = pixel.ZV
 		camSpeed     = 500.0
-		camZoom      = 10.0
+		camZoom      = 1.0
 		camZoomSpeed = 1.2
 	)
 
 	var (
-		frames     = 0
-		prevFrames = 0
-		second     = time.Tick(time.Second)
+		totalFrames = 0
 	)
 
 	// something strange is happening here
@@ -267,6 +265,13 @@ func run() {
 
 		if win.Pressed(pixelgl.KeyN) {
 			cells.Step()
+			totalFrames++
+			time.Sleep(100 * time.Millisecond)
+		}
+
+		if win.Pressed(pixelgl.KeyR) {
+			cells = NewLife(NUMROWS, NUMROWS, OPTION)
+			totalFrames = 0
 			time.Sleep(100 * time.Millisecond)
 		}
 
@@ -286,6 +291,7 @@ func run() {
 
 		if play {
 			cells.Step()
+			totalFrames++
 		}
 
 		win.Clear(colornames.Gray)
@@ -293,19 +299,13 @@ func run() {
 		background.Draw(win, pixel.IM)
 		win.Update()
 
-		frames++
-		select {
-		case <-second:
-			win.SetTitle(fmt.Sprintf("%s | FPS: %d | Live Tiles: %d", config.Title, frames, liveCells))
-			prevFrames = frames
-			frames = 0
-		default:
-			win.SetTitle(fmt.Sprintf("%s | FPS: %d | Live Tiles: %d", config.Title, prevFrames, liveCells))
-		}
+		win.SetTitle(fmt.Sprintf("%s | Steps: %d | Live Tiles: %d", config.Title, totalFrames, liveCells))
+
 	}
 }
 
 func main() {
+
 	//reading an integer
 	var rows int
 	fmt.Println("What is the preferred number of grid rows?")

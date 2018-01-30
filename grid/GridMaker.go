@@ -7,26 +7,26 @@ import (
 	"os"
 )
 
-// HLine draws a horizontal line
-func HLine(x1, y, x2 int, col color.Color, img *image.RGBA) {
+// hLine draws a horizontal line
+func hLine(x1, y, x2 int, col color.Color, img *image.RGBA) {
 	for ; x1 <= x2; x1++ {
 		img.Set(x1, y, col)
 	}
 }
 
-// VLine draws a veritcal line
-func VLine(x, y1, y2 int, col color.Color, img *image.RGBA) {
+// vLine draws a veritcal line
+func vLine(x, y1, y2 int, col color.Color, img *image.RGBA) {
 	for ; y1 <= y2; y1++ {
 		img.Set(x, y1, col)
 	}
 }
 
-// Rect draws a rectangle utilizing HLine() and VLine()
-func Rect(x1, y1, x2, y2 int, col color.Color, img *image.RGBA) {
-	HLine(x1, y1, x2, col, img)
-	HLine(x1, y2, x2, col, img)
-	VLine(x1, y1, y2, col, img)
-	VLine(x2, y1, y2, col, img)
+// rect draws a rectangle utilizing hLine() and vLine()
+func rect(x1, y1, x2, y2 int, col color.Color, img *image.RGBA) {
+	hLine(x1, y1, x2, col, img)
+	hLine(x1, y2, x2, col, img)
+	vLine(x1, y1, y2, col, img)
+	vLine(x2, y1, y2, col, img)
 }
 
 func MakeGrid(numRows, squareSize int, col color.Color, imageName string) {
@@ -37,7 +37,7 @@ func MakeGrid(numRows, squareSize int, col color.Color, imageName string) {
 
 	for i := 0; i < numRows; i++ {
 		for j := 0; j < numRows; j++ {
-			Rect(squareSize*i, squareSize*j, squareSize*i+squareSize, squareSize*j+squareSize, col, img)
+			rect(squareSize*i, squareSize*j, squareSize*i+squareSize, squareSize*j+squareSize, col, img)
 		}
 	}
 
