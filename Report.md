@@ -40,6 +40,7 @@ Outputs
         outer
         outer
 ```
+
 * Golang has its own subtle version of privacy, within a package, if a struct or function has an Uppercase identifier, it will be exported making it public. If a struct or funciton has a lowercase identifier, it will not be exported making it private. This can be tricky because a private struct with an Uppercase field will make that structs field public. Also, everything inside a given package can be seen by the package.
 * Go does not have undefined behavior as extensively as C++ does, but there are problems. One is that the exit of a goroutine is not guaranteed to happen before any event in the program. Ex:
 
