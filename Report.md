@@ -1,3 +1,5 @@
+#### Alexander Bauer
+
 ## Golang vs Java and C++
 
 Golang differs in several ways from C++ and Java. I will begin by listing Golangs features and then compare those to C++ and Java.
