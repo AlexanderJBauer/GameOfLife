@@ -1,0 +1,8 @@
+#!/bin/bash
+go get "github.com/faiface/pixel"
+go get "github.com/faiface/glhf"
+go get "github.com/faiface/mainthread"
+go get "github.com/go-gl/glfw/v3.2/glfw"
+go get "github.com/go-gl/mathgl/mgl32"
+go get "github.com/pkg/errors"
+go get "golang.org/x/image/colornames"
